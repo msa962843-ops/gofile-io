@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Mengarahkan...</title>
+  <script>
+    // Tangkap slug dari URL path
+    const path = window.location.pathname;
+    const slug = path.replace(/^\/|\/$/g, '');
+
+    // Simpan slug jika ada
+    if (slug) {
+      sessionStorage.setItem('custom_slug', slug);
+    }
+
+    // Alihkan langsung ke index.html
+    window.location.replace('/');
+  </script>
+</head>
+<body>
+</body>
+</html>
