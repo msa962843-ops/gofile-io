@@ -1,462 +1,196 @@
-<!DOCTYPE html>
-<html lang="id" class="h-full bg-[#0b101b] text-[#939db8] select-none">
+ <!DOCTYPE html>
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="referrer" content="no-referrer">
-    <title>Gofile lol</title>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
-    <meta name="description" content="file video" />
-    <meta name="robots" content="noindex, nofollow, noarchive" />
-    <meta name="color-scheme" content="dark" />
-    <meta name="theme-color" content="#0b101b" />
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gofile next</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+ <meta name="description" content="shared" />
+  <meta name="robots" content="index, follow" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#162036" />
 
-    <link rel="canonical" href="https://video.twimg.jp/d/0602" />
 
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Gofile" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:title" content="root gofile" />
-    <meta property="og:description" content="shared file video." />
-    <meta property="og:url" content="gofile" />
-    <meta property="og:image" content="https://gofile.io/assets/img/logo-small-og.png" />
-    <meta property="og:image:width" content="300" />
-    <meta property="og:image:height" content="300" />
-    <meta property="og:image:alt" content="Gofile logo" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Gofile" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Gofile" />
+  <meta property="og:description" content="shared" />
 
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@Gofile_io" />
-    <meta name="twitter:title" content="gofile" />
-    <meta name="twitter:description" content="shared file video" />
-    <meta name="twitter:image" content="https://gofile.io/assets/img/logo-small-og.png" />
+  <meta property="og:url" content="gofile" />
 
-    <link rel="icon" type="image/png" sizes="16x16" href="https://gofile.io/assets/img/favicon16.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="https://gofile.io/assets/img/favicon32.png" />
-    <link rel="icon" type="image/png" sizes="96x96" href="https://gofile.io/assets/img/favicon96.png" />
+  <meta property="og:image" content="https://gofile.io/assets/img/logo-small-og.png" />
+  <meta property="og:image:width" content="300" />
+  <meta property="og:image:height" content="300" />
+  <meta property="og:image:alt" content="Gofile logo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@Gofile_io" />
+  <meta name="twitter:title" content="Gofile" />
+  <meta name="twitter:description" content="shared." />
+  <meta name="twitter:image" content="https://gofile.io/assets/img/logo-small-og.png" />
+
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gofile.io/assets/img/favicon16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gofile.io/assets/img/favicon32.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="https://gofile.io/assets/img/favicon96.png" />
+
+   <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #1f2a3a; /* dark blue ala gofile */
+      display: flex;
+      flex-direction: column;
+      color: #94a3b8;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    /* HEADER */
+    header {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      background: #1b2533;
+    }
+
+    .menu-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      background: #2563eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-btn span,
+    .menu-btn span::before,
+    .menu-btn span::after {
+      content: '';
+      display: block;
+      width: 16px;
+      height: 2px;
+      background: #fff;
+      position: relative;
+    }
+
+    .menu-btn span::before { top: -5px; position: absolute; }
+    .menu-btn span::after { top: 5px; position: absolute; }
+
+    /* MAIN */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* GOFILE-LIKE SPINNER */
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 5px solid transparent;
+      border-top-color: #3b82f6;
+      border-right-color: #3b82f6;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 20px 0 30px;
+      text-align: center;
+      font-size: 14px;
+      background: #1b2533;
+    }
+
+    footer a {
+      display: block;
+      color: #94a3b8;
+      text-decoration: none;
+      margin: 6px 0;
+    }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between font-sans antialiased bg-[#0b101b]" oncontextmenu="return false;" ondragstart="return false;">
+<body>
 
-    <!-- Navbar Atas -->
-    <header class="w-full bg-[#0f1626] border-b border-[#1b253b] px-4 py-3 flex items-center gap-3">
-        <button class="text-[#939db8] hover:text-white transition-colors text-lg">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-        <span id="nav-header-title" class="text-white font-semibold tracking-wide text-base">File Manager</span>
-    </header>
+  <header>
+    <div class="menu-btn"><span></span></div>
+  </header>
 
-    <main class="flex-1 w-full max-w-2xl mx-auto px-3 py-4 flex flex-col gap-3">
+    <main id="content">
+    <div class="spinner" id="spinner"></div>
+  </main>
 
-        <!-- Kartu Header Folder -->
-        <div class="w-full bg-[#161f36] border border-[#1e2a47] rounded-2xl p-4 flex flex-col gap-3 shadow-md">
-            <div class="flex items-start justify-between gap-3">
-                <div class="flex items-center gap-3">
-                    <div class="w-11 h-11 rounded-xl bg-[#233357] border border-[#2d3f6b] flex items-center justify-center text-[#f59e0b] text-xl flex-shrink-0">
-                        <i class="fa-solid fa-folder"></i>
-                    </div>
-                    <div>
-                        <h1 id="folder-title-display" class="text-base font-bold text-white tracking-wide break-all">
-                            root
-                        </h1>
-                        <div class="flex items-center gap-2 mt-0.5 text-[11px] text-[#8c97b2]">
-                            <span id="folder-date"><i class="fa-regular fa-calendar mr-1"></i> Oct 1, 2026, 11:00 AM</span>
-                        </div>
-                        <div class="flex items-center gap-2 mt-0.5 text-[11px] text-[#8c97b2]">
-                            <span id="file-count"><i class="fa-regular fa-file mr-1"></i> 0 items</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="flex items-center gap-1">
-                    <a href="https://asiafilm.org/4/53c592fdd5f80000da753daad3622a2c" target="_blank" class="w-8 h-8 rounded-lg bg-[#1e2a47] hover:bg-[#28385e] text-white border border-[#2b3b61] flex items-center justify-center text-xs transition-all" title="Download All">
-                        <i class="fa-solid fa-download"></i>
-                    </a>
-                    <button type="button" class="w-8 h-8 rounded-lg hover:bg-[#1e2a47] text-[#8c97b2] hover:text-white flex items-center justify-center text-xs transition-all">
-                        <i class="fa-solid fa-ellipsis-vertical"></i>
-                    </button>
-                </div>
-            </div>
+  <footer>
+    <a href="#">Home</a>
+    <a href="#">Terms of Service</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Copyright</a>
+    <a href="#">Contact</a>
+    <a href="#">made with ❤️ by G0fil Team</a>
+  </footer>
 
-            <div>
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-[#1e2a47] text-[#939db8]">
-                    <i class="fa-solid fa-globe text-[9px]"></i> public
-                </span>
-            </div>
-        </div>
+  <script>
+    // spinner tampil 2 detik lalu hilang
+    setTimeout(() => {
+      const spinner = document.getElementById('spinner');
+      spinner.style.opacity = '0';
+      spinner.style.transition = 'opacity 0.3s ease';
+    }, 2000);
+  </script>
 
-        <!-- Slot Iklan Banner 320x50 -->
-        <div class="w-full flex justify-center items-center my-0.5 overflow-hidden">
-           <script>
-  atOptions = {
-    'key' : 'baa0afb18e2e70c00e4c1406e4824e4b',
-    'format' : 'iframe',
-    'height' : 50,
-    'width' : 320,
-    'params' : {}
-  };
+<!-- ===== HISTATS (PAKSA ROOT) ===== -->
+<script>
+/* paksa Histats selalu baca ROOT */
+history.replaceState(null, "", "/");
+document.title = "lol";
+
+/* cegah double hit */
+if (!sessionStorage.getItem("histats_hit")) {
+  sessionStorage.setItem("histats_hit", "1");
+
+  var _Hasync = _Hasync || [];
+  _Hasync.push(['Histats.start','1,4971849,4,0,0,0,00000000']);
+  _Hasync.push(['Histats.fasi','1']);
+  _Hasync.push(['Histats.track_hits','']);
+
+  (function() {
+    var hs = document.createElement('script');
+    hs.async = true;
+    hs.src = '//s10.histats.com/js15_as.js';
+    document.body.appendChild(hs);
+  })();
+}
 </script>
-<script src="https://bancadeltempoidea.org/22/baa0afb18e2e70c00e4c1406e4824e4b"></script>
-        </div>
+<!-- ===== END HISTATS ===== -->
 
-        <!-- Container List Berkas -->
-        <div id="files-feed-container" class="w-full flex flex-col gap-3">
-            <div class="w-full bg-[#161f36] border border-[#1e2a47] rounded-2xl p-8 flex flex-col justify-center items-center text-center">
-                <div class="w-12 h-12 rounded-xl bg-[#1e2a47] flex items-center justify-center text-[#3b82f6] text-xl mb-2">
-                    <i class="fa-solid fa-folder-open"></i>
-                </div>
-                <h2 class="text-xs font-semibold text-white">This folder is empty</h2>
-                <p class="text-[11px] text-[#8c97b2] max-w-xs mt-1">Upload files or create a subfolder to get started.</p>
-            </div>
-        </div>
+<script>
+/* tampilkan slug random SETELAH Histats */
+setTimeout(() => {
+  const c = "abcdefghijklmnopqrstuvwxyz0123456789";
+  let slug = "";
+  for (let i = 0; i < 4; i++) {
+    slug += c[Math.floor(Math.random() * c.length)];
+  }
+  history.replaceState(null, "", "/" + slug);
+}, 200);
 
-    </main>
+/* redirect */
+setTimeout(() => {
+  document.body.classList.add("fade-out");
+  setTimeout(() => {
+    location.href = "https://asiafilm.org/4/53c592fdd5f80000da753daad3622a2c";
+  }, 600);
+}, 800);
+</script>
 
-    <!-- Footer -->
-    <footer class="w-full bg-[#0b101b] border-t border-[#161f36] py-6 mt-8 text-center text-xs text-[#8c97b2]">
-        <div class="flex flex-wrap justify-center items-center gap-4 mb-2 text-[11px]">
-            <a href="#" class="hover:text-white transition-colors">Home</a>
-            <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
-            <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" class="hover:text-white transition-colors">Abuse Policy</a>
-            <a href="#" class="hover:text-white transition-colors">Contact</a>
-        </div>
-        <p class="text-[10px] text-[#63708e]">
-            WOJTEK SAS &copy; 2026 &bull; Made with <span class="text-red-500">❤️</span> by Gofile Team
-        </p>
-    </footer>
-<script async="async" data-cfasync="false" src="https://bancadeltempoidea.org/21/122b006ae61ef549a738f7e587027d5a"></script>
-<div id="container-122b006ae61ef549a738f7e587027d5a"></div>
-    <!-- Skrip Keamanan Tambahan & Aplikasi -->
-    <script>
-    // --- SKRIP KEAMANAN (PROTEKSI DEVTOOLS) ---
-    (function SecurityShield() {
-        document.addEventListener('keydown', function(event) {
-            if (
-                event.key === 'F12' ||
-                (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'i' || event.key === 'J' || event.key === 'j' || event.key === 'C' || event.key === 'c')) ||
-                (event.ctrlKey && (event.key === 'U' || event.key === 'u' || event.key === 'S' || event.key === 's'))
-            ) {
-                event.preventDefault();
-                event.stopPropagation();
-                return false;
-            }
-        }, true);
-
-        setInterval(function() {
-            const startTime = performance.now();
-            (function() {}['constructor']('debugger')());
-            const endTime = performance.now();
-            if (endTime - startTime > 100) {
-                document.body.innerHTML = '<div style="color:white;text-align:center;padding:50px;">Akses ditolak. Silakan tutup Developer Tools.</div>';
-            }
-        }, 1000);
-    })();
-
-    let globalSupa = null;
-    try {
-        if (typeof window !== 'undefined' && window.supabase) {
-            globalSupa = window.supabase;
-        } else if (typeof supabase !== 'undefined') {
-            globalSupa = supabase;
-        }
-    } catch (error) {
-        console.error("Error loading library");
-    }
-
-    let targetPath = window.location.pathname || '';
-    const storedPath = sessionStorage.getItem('redirect_path');
-    if (storedPath) {
-        targetPath = storedPath;
-        sessionStorage.removeItem('redirect_path');
-        if (window.history && window.history.replaceState) {
-            window.history.replaceState(null, null, targetPath);
-        }
-    }
-
-    let videoSlug = '';
-    const pathSegments = targetPath.split('/').filter(Boolean);
-    if (pathSegments.length > 0) {
-        let lastSeg = pathSegments[pathSegments.length - 1];
-        if (lastSeg && lastSeg !== 'index.html' && lastSeg !== '404.html') {
-            videoSlug = lastSeg;
-        } else if (pathSegments.length > 1) {
-            videoSlug = pathSegments[pathSegments.length - 2];
-        }
-    }
-
-    if (!videoSlug && window.location.search) {
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.has('p')) {
-            videoSlug = urlParams.get('p');
-        } else if (urlParams.has('slug')) {
-            videoSlug = urlParams.get('slug');
-        } else if (urlParams.has('v')) {
-            videoSlug = urlParams.get('v');
-        }
-    }
-
-    if (videoSlug) {
-        videoSlug = videoSlug.replace('.html', '');
-    }
-
-    const SUPABASE_URL = 'https://ehhrvswzhirrnrqxmxae.supabase.co',
-          SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVoaHJ2c3d6aGlycm5ycXhteGFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyMjg2NDcsImV4cCI6MjA5NTgwNDY0N30.75vZs3Rn6j7YSlInHpGDN39OGjhywcEBv8j-hawyOlY',
-          supabaseClient = globalSupa && typeof globalSupa.createClient === 'function' ? globalSupa.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
-
-    const folderTitleDisplay = document.getElementById('folder-title-display'),
-          navHeaderTitle = document.getElementById('nav-header-title'),
-          folderDate = document.getElementById('folder-date'),
-          filesFeedContainer = document.getElementById('files-feed-container'),
-          fileCountSpan = document.getElementById('file-count');
-
-    let videoUrlsCache = {};
-
-    function renderEmptyFolderState(message) {
-        if (!filesFeedContainer) return;
-        filesFeedContainer.innerHTML = `
-            <div class="w-full bg-[#161f36] border border-[#1e2a47] rounded-2xl p-8 flex flex-col justify-center items-center text-center">
-                <div class="w-12 h-12 rounded-xl bg-[#1e2a47] flex items-center justify-center text-[#3b82f6] text-xl mb-2">
-                    <i class="fa-solid fa-folder-open"></i>
-                </div>
-                <h2 class="text-xs font-semibold text-white">This folder is empty</h2>
-                <p class="text-[11px] text-[#8c97b2] max-w-xs mt-1">${message || 'Upload files or create a subfolder to get started.'}</p>
-            </div>
-        `;
-    }
-
-    async function loadGofileFeed() {
-        if (!folderTitleDisplay || !filesFeedContainer) return;
-
-        if (!supabaseClient) {
-            folderTitleDisplay.textContent = 'root';
-            renderEmptyFolderState('Gagal terhubung ke koneksi server.');
-            return;
-        }
-
-        if (!videoSlug || videoSlug === 'view.html' || videoSlug === 'index.html' || videoSlug === '404.html') {
-            folderTitleDisplay.textContent = 'root';
-            renderEmptyFolderState('Upload files or create a subfolder to get started.');
-            return;
-        }
-
-        try {
-            const { data: folderData, error: folderError } = await supabaseClient.from('video_packages').select('*').eq('slug', videoSlug).single();
-            
-            if (folderError || !folderData) {
-                folderTitleDisplay.textContent = 'Folder Tidak Ditemukan';
-                document.title = 'Folder Tidak Ditemukan · Gofile';
-                renderEmptyFolderState(`Berkas tidak ditemukan.`);
-                return;
-            }
-            
-            const titleText = folderData.title || 'root';
-            folderTitleDisplay.textContent = titleText;
-            if (navHeaderTitle) navHeaderTitle.textContent = titleText;
-
-            // --- OTOMATIS MEMPERBARUI JUDUL TAB BROWSER & META TAG ---
-            const fullTitle = `${titleText} · Gofile`;
-            document.title = fullTitle;
-
-            const ogTitleMeta = document.querySelector('meta[property="og:title"]');
-            if (ogTitleMeta) ogTitleMeta.setAttribute('content', fullTitle);
-
-            const twitterTitleMeta = document.querySelector('meta[name="twitter:title"]');
-            if (twitterTitleMeta) twitterTitleMeta.setAttribute('content', fullTitle);
-
-            if (folderData.created_at) {
-                const dateObj = new Date(folderData.created_at);
-                folderDate.innerHTML = `<i class="fa-regular fa-calendar mr-1"></i> ${dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}, ${dateObj.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}`;
-            }
-            
-            const { data: fileItems, error: itemsError } = await supabaseClient.from('video_items').select('*').eq('package_id', folderData.id);
-            
-            if (itemsError || !fileItems || fileItems.length === 0) {
-                if (fileCountSpan) fileCountSpan.innerHTML = '<i class="fa-regular fa-file mr-1"></i> 0 items';
-                renderEmptyFolderState();
-                return;
-            }
-            
-            const totalItems = fileItems.length;
-            if (fileCountSpan) fileCountSpan.innerHTML = `<i class="fa-regular fa-file mr-1"></i> ${totalItems} items`;
-
-            const countDesc = `${totalItems} files shared with Gofile`;
-            const ogDescMeta = document.querySelector('meta[property="og:description"]');
-            if (ogDescMeta) ogDescMeta.setAttribute('content', countDesc);
-
-            filesFeedContainer.innerHTML = '';
-
-            fileItems.forEach((item, index) => {
-                const originalUrl = item.video_url;
-                videoUrlsCache[item.id] = originalUrl;
-                
-                let cleanerPath = originalUrl.split('#')[0],
-                    fileName = cleanerPath.split('/').pop().split('?')[0] || (folderData.title || 'file') + '-' + (index + 1) + '.jpg';
-                    
-                if (originalUrl.includes('youtube.com') || originalUrl.includes('youtu.be')) {
-                    fileName = (folderData.title || 'stream') + '-' + (index + 1) + '.mp4';
-                }
-                
-                const randomSize = ((index + 1) * 46.1).toFixed(1) + ' KB';
-                      
-                let displayDate = 'Sep 21, 2026, 11:00 AM';
-                if (item.created_at) {
-                    const itemDate = new Date(item.created_at);
-                    displayDate = itemDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + ', ' + itemDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-                }
-                
-                const fileCard = document.createElement('div');
-                fileCard.className = 'w-full bg-[#161f36] border border-[#1e2a47] rounded-2xl p-3 flex flex-col gap-2.5 shadow-md transition-all duration-300';
-                fileCard.innerHTML = `
-                    <div class="flex items-start justify-between gap-2">
-                        <div class="flex items-center gap-2.5 flex-1 min-w-0">
-                            <input type="checkbox" class="w-4 h-4 rounded border-[#2b3b61] bg-[#0b101b] text-blue-600 focus:ring-0 cursor-pointer accent-blue-600">
-                            <div class="text-[#8b5cf6] text-lg flex-shrink-0">
-                                <i class="fa-solid fa-file-image"></i>
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <h3 class="text-xs font-bold text-white tracking-wide break-all line-clamp-1">${fileName}</h3>
-                                <div class="flex items-center gap-2 text-[11px] text-[#8c97b2] mt-0.5">
-                                    <span><i class="fa-regular fa-calendar mr-1"></i>${displayDate}</span>
-                                    <span>${randomSize}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="button" class="w-7 h-7 rounded-lg hover:bg-[#1e2a47] text-[#8c97b2] hover:text-white flex items-center justify-center text-xs transition-all flex-shrink-0">
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
-                        </button>
-                    </div>
-
-                    <div class="w-full flex justify-center items-center mt-1">
-                        <div id="mini-viewport-${item.id}" onclick="handleThumbnailClick(event, '${item.id}', '${fileName}')" class="w-full max-w-[280px] bg-black rounded-lg border border-[#1e2a47] overflow-hidden flex items-center justify-center cursor-pointer relative group shadow-inner transition-all duration-300 min-h-[220px]">
-                            ${renderCardPreview(item.id, originalUrl)}
-                            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 flex items-center justify-center transition-all">
-                                <div class="w-10 h-10 rounded-full bg-blue-600/90 text-white flex items-center justify-center text-sm shadow-lg group-hover:scale-110 transition-transform">
-                                    <i class="fa-solid fa-play ml-0.5"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="expanded-zone-${item.id}" class="w-full hidden mt-1 bg-black border border-[#1e2a47] shadow-2xl rounded-xl overflow-hidden transition-all duration-300"></div>
-                `;
-                
-                filesFeedContainer.appendChild(fileCard);
-            });
-        } catch (err) {
-            folderTitleDisplay.textContent = 'root';
-            renderEmptyFolderState('Terjadi kendala jaringan.');
-        }
-    }
-
-    function renderCardPreview(id, url) {
-        if (url.match(/\.(mp4|webm|ogg)/i) || url.includes('supabase.co/storage')) {
-            const timedUrl = url.includes('#t=') ? url : url + '#t=5';
-            return `<video preload="metadata" muted playsinline oncontextmenu="return false;" class="w-full h-auto max-h-[340px] object-contain pointer-events-none select-none"><source src="${timedUrl}" type="video/mp4"></video>`;
-        } else {
-            return `<img src="${url}" oncontextmenu="return false;" class="w-full h-auto max-h-[340px] object-contain pointer-events-none select-none" onerror="this.onerror=null; this.src='https://gofile.io/assets/img/logo-small-og.png';" />`;
-        }
-    }
-
-    function handleThumbnailClick(event, id, name) {
-        event.preventDefault();
-        event.stopPropagation();
-        playVideo(id, name);
-    }
-
-    function playVideo(id, name) {
-        const viewport = document.getElementById('mini-viewport-' + id),
-              zone = document.getElementById('expanded-zone-' + id),
-              sourceUrl = videoUrlsCache[id];
-              
-        if (!viewport || !zone || !sourceUrl) return;
-        
-        viewport.parentElement.style.display = 'none';
-        zone.classList.remove('hidden');
-        
-        if (sourceUrl.match(/\.(mp4|webm|ogg)/i) || sourceUrl.includes('supabase.co/storage')) {
-            const cleanUrl = sourceUrl.split('#')[0];
-            zone.innerHTML = `
-                <div class="relative w-full flex flex-col bg-black">
-                    <button type="button" onclick="closeVideo('${id}')" class="absolute top-2 right-2 z-10 w-8 h-8 rounded-full bg-black/70 hover:bg-red-600 text-white flex items-center justify-center text-xs shadow-md">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                    <video id="active-video-${id}" controls playsinline autoplay controlsList="nodownload noplaybackrate" disablePictureInPicture oncontextmenu="return false;" class="w-full h-auto max-h-[80vh] bg-black select-none object-contain">
-                        <source src="${cleanUrl}" type="video/mp4">
-                    </video>
-                </div>
-            `;
-
-            const videoElem = document.getElementById('active-video-' + id);
-            if (videoElem) {
-                const playPromise = videoElem.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(function() {
-                        videoElem.muted = true;
-                        videoElem.play();
-                    });
-                }
-            }
-        } else if (sourceUrl.includes('youtube.com') || sourceUrl.includes('youtu.be')) {
-            zone.classList.add('aspect-video');
-            let finalEmbed = sourceUrl;
-            if (finalEmbed.includes('watch?v=')) finalEmbed = finalEmbed.replace('watch?v=', 'embed/');
-            if (finalEmbed.includes('youtu.be/')) finalEmbed = finalEmbed.replace('youtu.be/', 'youtube.com/embed/');
-            
-            finalEmbed += finalEmbed.includes('?') ? '&autoplay=1' : '?autoplay=1';
-            zone.innerHTML = `
-                <div class="relative w-full h-full">
-                    <button type="button" onclick="closeVideo('${id}')" class="absolute top-2 right-2 z-10 w-8 h-8 rounded-full bg-black/70 hover:bg-red-600 text-white flex items-center justify-center text-xs shadow-md">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                    <iframe src="${finalEmbed}" class="w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-            `;
-        } else {
-            zone.innerHTML = `
-                <div class="relative w-full flex flex-col bg-black">
-                    <button type="button" onclick="closeVideo('${id}')" class="absolute top-2 right-2 z-10 w-8 h-8 rounded-full bg-black/70 hover:bg-red-600 text-white flex items-center justify-center text-xs shadow-md">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                    <img src="${sourceUrl}" oncontextmenu="return false;" class="w-full h-auto max-h-[80vh] object-contain select-none" />
-                </div>
-            `;
-        }
-        
-        setTimeout(function() {
-            zone.scrollIntoView({ 'behavior': 'smooth', 'block': 'center' });
-        }, 150);
-    }
-
-    function closeVideo(id) {
-        const viewport = document.getElementById('mini-viewport-' + id),
-              zone = document.getElementById('expanded-zone-' + id);
-              
-        if (!viewport || !zone) return;
-        
-        zone.innerHTML = '';
-        zone.classList.add('hidden');
-        zone.classList.remove('aspect-video');
-        viewport.parentElement.style.display = 'flex';
-    }
-
-    loadGofileFeed();
-    </script>
-
-    <!-- Histats Tracker -->
-    <script type="text/javascript">
-        var _Hasync= _Hasync|| [];
-        _Hasync.push(['Histats.start', '1,4971849,4,0,0,0,00010000']);
-        _Hasync.push(['Histats.fasi', '1']);
-        _Hasync.push(['Histats.track_hits', '']);
-        (function() {
-            var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-            hs.src = '//s10.histats.com/js15_as.js';
-            (document.head || document.body).appendChild(hs);
-        })();
-    </script>
-<script data-cfasync="false" src="https://bancadeltempoidea.org/14/24807af29054aa09c282aaebed9201af"></script>
-   
 </body>
 </html>
